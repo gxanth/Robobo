@@ -1,0 +1,27 @@
+{
+  "name": "Learning Machines Dev",
+  "image": "learning_machines",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "runArgs": [
+    "--net=host",
+    "-v",
+    "${localWorkspaceFolder}/results:/root/results"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-vscode.cpptools",
+        "ms-ros.ros"
+      ],
+      "settings": {
+        // Place VS Code settings here if needed
+      }
+    }
+  },
+  "remoteUser": "root",
+  "containerEnv": {
+    "PYTHONPATH": "/workspace/catkin_ws/src"
+  }
+}

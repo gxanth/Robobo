@@ -10,3 +10,4 @@ docker run -t --rm -p 45100:45100 -p 45101:45101 -v "$(pwd)/results:/root/result
 # Because docker runs as root, this means the files will be owned by the root user.
 # Change this with:
 # sudo chown "$USER":"$USER" ./results -R
+

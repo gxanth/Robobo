@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#223206",
+      "titleBar.activeBackground": "#304608",
+      "titleBar.activeForeground": "#F5FCE9"
+    },
+    "python.analysis.extraPaths": [
+      "/workspace/catkin_ws/src"
+    ],
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.formatting.provider": "black",
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "editor.formatOnSave": true
+  }
+}

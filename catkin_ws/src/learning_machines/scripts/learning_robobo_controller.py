@@ -4,7 +4,6 @@ import sys
 from robobo_interface import SimulationRobobo, HardwareRobobo
 from learning_machines import run_all_actions
 
-
 if __name__ == "__main__":
     # You can do better argument parsing than this!
     if len(sys.argv) < 2:
