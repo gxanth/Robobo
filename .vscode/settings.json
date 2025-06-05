@@ -1,5 +1,10 @@
 {
     "python.analysis.extraPaths": [
-        "/workspace/catkin_ws/src"
-    ]
+        "${workspaceFolder}/catkin_ws/src"
+    ],
+    "python.formatting.provider": "black",
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "editor.formatOnSave": true,
+    "python.envFile": "${workspaceFolder}/.env"
 }

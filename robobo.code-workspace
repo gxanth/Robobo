@@ -5,14 +5,16 @@
     }
   ],
   "settings": {
+    // ── your existing UI tweaks ────────────────────────────────
     "workbench.colorCustomizations": {
       "activityBar.background": "#223206",
       "titleBar.activeBackground": "#304608",
       "titleBar.activeForeground": "#F5FCE9"
     },
-    "python.analysis.extraPaths": [
-      "/workspace/catkin_ws/src"
-    ],
+    // ── Python: pin Pylance & let it read pyrightconfig.json ──
+    "python.languageServer": "Pylance",
+    "python.analysis.useLibraryCodeForTypes": true,
+    // ── Editor & tooling you already had ──────────────────────
     "python.envFile": "${workspaceFolder}/.env",
     "python.formatting.provider": "black",
     "python.linting.flake8Enabled": true,

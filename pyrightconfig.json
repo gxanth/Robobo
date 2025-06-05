@@ -1,0 +1,12 @@
+{
+  "executionEnvironments": [
+    {
+      "root": ".",
+      "extraPaths": [
+        "/workspace/catkin_ws/src",
+        "/workspace/catkin_ws/src/robobo_interface/src",
+        "/workspace/catkin_ws/src/learning_machines/src"
+      ]
+    }
+  ]
+}

@@ -1,27 +1,47 @@
 {
   "name": "Learning Machines Dev",
+  // ── Image & workspace ─────────────────────────────────────────────────────────
   "image": "learning_machines",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace",
+  // ── Docker run args ───────────────────────────────────────────────────────────
   "runArgs": [
     "--net=host",
     "-v",
     "${localWorkspaceFolder}/results:/root/results"
   ],
+  // ── VS Code inside the container ──────────────────────────────────────────────
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
+        "ms-python.vscode-pylance",
         "ms-vscode.cpptools",
         "ms-ros.ros"
       ],
       "settings": {
-        // Place VS Code settings here if needed
+        // Always use Pylance and tell it where your ROS packages live
+        "python.languageServer": "Pylance",
+        "python.analysis.extraPaths": [
+          "/workspace/catkin_ws/src"
+        ],
+        // optional editor/lint/format settings …
+        "python.formatting.provider": "black",
+        "python.linting.enabled": true,
+        "python.linting.flake8Enabled": true,
+        "editor.formatOnSave": true,
+        "python.envFile": "${workspaceFolder}/.env"
       }
     }
   },
+  // ── Users & environment ────────────────────────────────────────────────────────
   "remoteUser": "root",
   "containerEnv": {
+    // makes the path available to any terminal/command you run
     "PYTHONPATH": "/workspace/catkin_ws/src"
+  },
+  "remoteEnv": {
+    // makes the same path visible to VS Code & Pylance
+    "PYTHONPATH": "/workspace/catkin_ws/src:${containerEnv:PYTHONPATH}"
   }
 }
