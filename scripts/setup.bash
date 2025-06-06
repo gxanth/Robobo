@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ── Network/IP settings ────────────────────────────────────────────────
-export ROS_MASTER_URI="http://localhost:11311"
+export ROS_MASTER_URI="http://192.168.0.102:11311" # ← robobo's IP
 export COPPELIA_SIM_IP="192.168.0.100"        # ← your laptop’s IP
 
 # ── ROS environment (adjust 'noetic' if you use another distro) ────────
