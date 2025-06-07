@@ -1,16 +1,26 @@
 {
   "name": "Learning Machines Dev",
-  // ── Image & workspace ─────────────────────────────────────────────────────────
-  "image": "learning_machines",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
   "workspaceFolder": "/workspace",
-  // ── Docker run args ───────────────────────────────────────────────────────────
-  "runArgs": [
-    "--net=host",
-    "-v",
-    "${localWorkspaceFolder}/results:/root/results"
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "mounts": [
+    "source=${localWorkspaceFolder}/results,target=/root/results,type=bind"
   ],
-  // ── VS Code inside the container ──────────────────────────────────────────────
+  "runArgs": [
+    "-u",
+    "${localEnv:UID}:${localEnv:GID}",
+    "--net=host"
+  ],
+  "forwardPorts": [
+    45100,
+    45101
+  ],
+  "postCreateCommand": "bash -lc 'cd /workspace/catkin_ws && catkin_make && source /workspace/scripts/source_env.bash'",
+  "postStartCommand": "bash -lc 'cd /workspace/catkin_ws && catkin_make'",
+  "remoteUser": "root",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -18,30 +28,17 @@
         "ms-python.vscode-pylance",
         "ms-vscode.cpptools",
         "ms-ros.ros"
-      ],
-      "settings": {
-        // Always use Pylance and tell it where your ROS packages live
-        "python.languageServer": "Pylance",
-        "python.analysis.extraPaths": [
-          "/workspace/catkin_ws/src"
-        ],
-        // optional editor/lint/format settings …
-        "python.formatting.provider": "black",
-        "python.linting.enabled": true,
-        "python.linting.flake8Enabled": true,
-        "editor.formatOnSave": true,
-        "python.envFile": "${workspaceFolder}/.env"
-      }
+      ]
     }
   },
-  // ── Users & environment ────────────────────────────────────────────────────────
-  "remoteUser": "root",
   "containerEnv": {
-    // makes the path available to any terminal/command you run
-    "PYTHONPATH": "/workspace/catkin_ws/src"
+    "PYTHONPATH": "/workspace/catkin_ws/src",
+    "ROS_MASTER_URI": "http://192.168.0.106:11311",
+    "COPPELIA_SIM_IP": "localhost"
   },
   "remoteEnv": {
-    // makes the same path visible to VS Code & Pylance
-    "PYTHONPATH": "/workspace/catkin_ws/src:${containerEnv:PYTHONPATH}"
+    "PYTHONPATH": "/workspace/catkin_ws/src:${containerEnv:PYTHONPATH}",
+    "ROS_MASTER_URI": "${containerEnv:ROS_MASTER_URI}",
+    "COPPELIA_SIM_IP": "${containerEnv:COPPELIA_SIM_IP}"
   }
 }

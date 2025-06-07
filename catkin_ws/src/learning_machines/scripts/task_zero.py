@@ -1,4 +1,4 @@
-# catkin_ws/src/learning_machines/scripts/manual_control.py
+#!/usr/bin/env python
 
 import time
 from robobo_interface import SimulationRobobo  # or HardwareRobobo
